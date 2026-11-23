@@ -26,26 +26,99 @@
   </header>
 
   <!-- Product Image Gallery -->
-<section class="product-gallery">
-  <div class="main-image">
-    <img id="display-image" src="img1.jpg" alt="Daniel Clarion Watch">
+<section class="product-gallery" style="display:flex; flex-direction:column; align-items:center;">
+  <div class="main-image" id="product-carousel"
+       style="display:flex; flex-direction:row; direction:ltr; width:100%; aspect-ratio:244.67 / 314.63; height:auto; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; touch-action:pan-x; scrollbar-width:none;">
+    <img class="product-slide" src="img1.jpg" alt="Daniel Clarion Watch"
+         style="display:block; flex:0 0 100%; width:100%; height:100%; aspect-ratio:244.67 / 314.63; object-fit:cover; scroll-snap-align:start;">
+    <img class="product-slide" src="img2.jpg" alt="Product image 2"
+         style="display:block; flex:0 0 100%; width:100%; height:100%; aspect-ratio:244.67 / 314.63; object-fit:cover; scroll-snap-align:start;">
+    <img class="product-slide" src="img3.jpg" alt="Product image 3"
+         style="display:block; flex:0 0 100%; width:100%; height:100%; aspect-ratio:244.67 / 314.63; object-fit:cover; scroll-snap-align:start;">
+    <img class="product-slide" src="img4.jpg" alt="Product image 4"
+         style="display:block; flex:0 0 100%; width:100%; height:100%; aspect-ratio:244.67 / 314.63; object-fit:cover; scroll-snap-align:start;">
+    <img class="product-slide" src="img5.jpg" alt="Product image 5"
+         style="display:block; flex:0 0 100%; width:100%; height:100%; aspect-ratio:244.67 / 314.63; object-fit:cover; scroll-snap-align:start;">
+    <img class="product-slide" src="img6.jpg" alt="Product image 6"
+         style="display:block; flex:0 0 100%; width:100%; height:100%; aspect-ratio:244.67 / 314.63; object-fit:cover; scroll-snap-align:start;">
+    <div class="product-slide"
+         style="position:relative; display:block; flex:0 0 100%; width:100%; height:100%; aspect-ratio:244.67 / 314.63; overflow:hidden; scroll-snap-align:start; background:#000;">
+      <video id="product-video" src="Video.mp4"
+             controls playsinline preload="metadata"
+             style="display:block; width:100%; height:100%; aspect-ratio:244.67 / 314.63; object-fit:cover;"></video>
+      <div id="video-thumbnail"
+           style="position:absolute; inset:0; width:100%; height:100%; cursor:pointer; z-index:2; display:flex; align-items:center; justify-content:center; background:#000;">
+        <img src="img1.jpg" alt="Video Thumbnail"
+             style="width:100%; height:100%; aspect-ratio:244.67 / 314.63; object-fit:cover; display:block;">
+        <div style="position:absolute; width:56px; height:56px; border-radius:50%; background:rgba(0,0,0,0.65); color:#fff; display:flex; align-items:center; justify-content:center; font-size:22px; box-shadow:0 4px 12px rgba(0,0,0,0.4);">
+          <i class="fa-solid fa-play" style="margin-left:3px;"></i>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="thumbs">
-    <img src="img1.jpg" alt="Black" onclick="changeImage(this)">
-    <img src="img2.jpg" alt="Black" onclick="changeImage(this)">
-    <img src="img3.jpg" alt="Black" onclick="changeImage(this)">
-    <img src="img4.jpg" alt="Black" onclick="changeImage(this)">
-    <img src="img5.jpg" alt="Black" onclick="changeImage(this)">
-    <img src="img6.jpg" alt="Black" onclick="changeImage(this)">
-  </div>
+  <div id="product-dots" aria-label="Choose product image"
+       style="display:flex; justify-content:center; align-items:center; width:100%; gap:8px; padding:10px 0 4px; direction:ltr;"></div>
 </section>
 
 <script>
-  // पहले वाला price वाला code रहेगा जैसा का तैसा
+  // Product gallery: one slide at a time, with dots.
+  (function () {
+    const carousel = document.getElementById("product-carousel");
+    const dotsContainer = document.getElementById("product-dots");
+    const slides = Array.from(carousel.querySelectorAll(".product-slide"));
+    const video = document.getElementById("product-video");
+    const videoThumb = document.getElementById("video-thumbnail");
 
-  function changeImage(img) {
-    document.getElementById("display-image").src = img.src;
-  }
+    if (video && videoThumb) {
+      videoThumb.addEventListener("click", () => {
+        videoThumb.style.display = "none";
+        video.play();
+      });
+    }
+
+    slides.forEach((slide, index) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.setAttribute("aria-label", "Show product " + (index + 1));
+      dot.style.cssText = "width:8px; height:8px; padding:0; border:0; border-radius:50%; background:#bdbdbd; cursor:pointer;";
+      dot.addEventListener("click", () => {
+        slides[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+      });
+      dotsContainer.appendChild(dot);
+    });
+
+    function updateActiveDot() {
+      const carouselRect = carousel.getBoundingClientRect();
+      const carouselCenter = carouselRect.left + carouselRect.width / 2;
+      let activeIndex = 0;
+      let closestDistance = Infinity;
+
+      slides.forEach((slide, index) => {
+        const rect = slide.getBoundingClientRect();
+        const distance = Math.abs((rect.left + rect.width / 2) - carouselCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          activeIndex = index;
+        }
+      });
+
+      Array.from(dotsContainer.children).forEach((dot, index) => {
+        dot.style.background = index === activeIndex ? "#222" : "#bdbdbd";
+        dot.style.transform = index === activeIndex ? "scale(1.25)" : "scale(1)";
+      });
+
+      slides.forEach((slide, index) => {
+        const slideVideo = slide.tagName === "VIDEO" ? slide : slide.querySelector("video");
+        if (slideVideo && index !== activeIndex) {
+          slideVideo.pause();
+        }
+      });
+    }
+
+    carousel.addEventListener("scroll", updateActiveDot, { passive: true });
+    window.addEventListener("resize", updateActiveDot);
+    updateActiveDot();
+  })();
 </script>
 
 
