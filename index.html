@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniel Clarion Watch</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Search Bar -->
+  <header class="search-bar">
+    <div class="back"><i class="fa-solid fa-arrow-left"></i></div>
+    <input type="text" placeholder="Search for products">
+    <div class="cart"><i class="fa-solid fa-cart-shopping"></i></div>
+  </header>
+
+  <!-- Product Image Gallery -->
+<section class="product-gallery">
+  <div class="main-image">
+    <img id="display-image" src="img1.jpg" alt="Daniel Clarion Watch">
+  </div>
+  <div class="thumbs">
+    <img src="img1.jpg" alt="Black" onclick="changeImage(this)">
+    <img src="img2.jpg" alt="Black" onclick="changeImage(this)">
+    <img src="img3.jpg" alt="Black" onclick="changeImage(this)">
+    <img src="img4.jpg" alt="Black" onclick="changeImage(this)">
+    <img src="img5.jpg" alt="Black" onclick="changeImage(this)">
+    <img src="img6.jpg" alt="Black" onclick="changeImage(this)">
+  </div>
+</section>
+
+<script>
+  // पहले वाला price वाला code रहेगा जैसा का तैसा
+
+  function changeImage(img) {
+    document.getElementById("display-image").src = img.src;
+  }
+</script>
+
+
+  <!-- Rating -->
+  <div class="rating">
+    ⭐ 4.8 | 1.1K+
+  </div>
+
+  <!-- Product Details -->
+  <section class="details">
+    <h2>Power, Style & Flame in Your Hand.</h2>
+    <p>Meet the 608 Heavy Metal Pistol Lighter from Niyanta Lighters, featuring a metallic stainless-steel alloy finish and a refillable butane fuel system.</p>
+  </section>
+
+  
+
+  <!-- Price -->
+  <div class="price" id="price-box">
+    <span class="offer">Limited Time Offer · Cash on Delivery</span>
+    <h3><span class="discount" id="discount">25% OFF</span> 
+      <del id="old-price">₹4,999</del> 
+      <span id="new-price">₹3,499/-</span>
+    </h3>
+  </div>
+
+  <!-- Buttons -->
+  <div class="buttons">
+    <button class="cart-btn"><i class="fa-solid fa-cart-plus"></i> Add to cart</button>
+    <button class="buy-btn" onclick="window.location.href='address.html'">
+      <i class="fa-solid fa-bag-shopping"></i> Buy at <span id="buy-price">₹3,499</span>
+    </button>
+  </div>
+
+  <div class="photo-section">
+        <img src="cash on delevry.png" alt="Photo 6" class="photo">
+        <img src="prodect detels.png" alt="Photo 6" class="photo">
+        <img src="vkkk.jpg" alt="Photo 6" class="photo">
+    </div>
+
+  <section class="reviews">
+  <!-- Review 1 -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="stars">★★★★★</span>
+      <span class="rating">5.0</span>
+      <span class="title">Excellent</span>
+    </div>
+    <div class="review-sub">Verified Buyer</div>
+    <p class="review-text">
+      Like a real gun but it leather cover was not in good condition
+    </p>
+    <div class="review-images">
+      <img src="Review/1.webp" alt="Review image" onclick="openImage(this)">
+    </div>
+    <div class="review-footer">
+      <span class="user">Flipkart Cust…, Surat District</span>
+      <div class="actions">
+        <button class="helpful-btn" onclick="markHelpful(this)">👍 Helpful <span>12</span></button>
+        <button class="reply-btn">💬 5</button>
+      </div>
+      <div class="verified">✔ Verified Purchase: 12 hours ago</div>
+    </div>
+  </div>
+
+  <!-- Review 2 -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="stars">★★★★</span>
+      <span class="rating">4.0</span>
+      <span class="title">Worth every penny</span>
+    </div>
+    <div class="review-sub">Verified Buyer</div>
+    <p class="review-text">
+      5 out of 5 starsThis items is very good and realistic
+    </p>
+    <div class="review-images">
+      <img src="Review/2.avif" alt="Review image" onclick="openImage(this)">
+      <img src="Review/3.avif" alt="Review image" onclick="openImage(this)">
+      <img src="Review/4.avif" alt="Review image" onclick="openImage(this)">
+    </div>
+    <div class="review-footer">
+      <span class="user">Parth Mehta, Solan District</span>
+      <div class="actions">
+        <button class="helpful-btn" onclick="markHelpful(this)">👍 Helpful <span>15</span></button>
+        <button class="reply-btn">💬 5</button>
+      </div>
+      <div class="verified">✔ Verified Purchase: 1 hours ago</div>
+    </div>
+  </div>
+
+  <!-- Review 3 -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="stars">★★★★★</span>
+      <span class="rating">5.0</span>
+      <span class="title">Worth every penny</span>
+    </div>
+    <div class="review-sub">Verified Buyer</div>
+    <p class="review-text">
+      Quality is good and waight is 422.590 gram Family function me sabko shock kar diya.
+    </p>
+    <div class="review-images">
+      <img src="Review/5.avif" alt="Review image" onclick="openImage(this)">
+      <img src="Review/6.avif" alt="Review image" onclick="openImage(this)">
+      <img src="Review/7.avif" alt="Review image" onclick="openImage(this)">
+    </div>
+    <div class="review-footer">
+      <span class="user">Parth Mehta, Solan District</span>
+      <div class="actions">
+        <button class="helpful-btn" onclick="markHelpful(this)">👍 Helpful <span>17</span></button>
+        <button class="reply-btn">💬 11</button>
+      </div>
+      <div class="verified">✔ Verified Purchase: 6 hours ago</div>
+    </div>
+  </div>
+
+    <!-- Review 3 -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="stars">★★★★★</span>
+      <span class="rating">5.0</span>
+      <span class="title">Worth every penny</span>
+    </div>
+    <div class="review-sub">Verified Buyer</div>
+    <p class="review-text">
+      Looks like a real gun, go for it no need to think.
+    </p>
+    <div class="review-images">
+      <img src="Review/8.jpg" alt="Review image" onclick="openImage(this)">
+      <img src="Review/9.jpg" alt="Review image" onclick="openImage(this)">
+    </div>
+    <div class="review-footer">
+      <span class="user">Prveen, barmer District</span>
+      <div class="actions">
+        <button class="helpful-btn" onclick="markHelpful(this)">👍 Helpful <span>17</span></button>
+        <button class="reply-btn">💬 11</button>
+      </div>
+      <div class="verified">✔ Verified Purchase: 9 hours ago</div>
+    </div>
+  </div>
+
+    <!-- Review 3 -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="stars">★★★★★</span>
+      <span class="rating">5.0</span>
+      <span class="title">Worth every penny</span>
+    </div>
+    <div class="review-sub">Verified Buyer</div>
+    <p class="review-text">
+      A dum real gun jaisi dikhti hai aur weight bhi hai acha
+    </p>
+    <div class="review-images">
+      <img src="Review/10.jpg" alt="Review image" onclick="openImage(this)">
+    </div>
+    <div class="review-footer">
+      <span class="user">Parth Mehta, Solan District</span>
+      <div class="actions">
+        <button class="helpful-btn" onclick="markHelpful(this)">👍 Helpful <span>17</span></button>
+        <button class="reply-btn">💬 11</button>
+      </div>
+      <div class="verified">✔ Verified Purchase: 6 hours ago</div>
+    </div>
+  </div>
+
+  <!-- Review 4 -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="stars">★★★★★</span>
+      <span class="rating">5.0</span>
+      <span class="title">Worth every penny</span>
+    </div>
+    <div class="review-sub">Verified Buyer</div>
+    <p class="review-text">
+      Feels real and heavy
+    </p>
+    <div class="review-images">
+      
+    </div>
+    <div class="review-footer">
+      <span class="user">aakash, jodhpur District</span>
+      <div class="actions">
+        <button class="helpful-btn" onclick="markHelpful(this)">👍 Helpful <span>44</span></button>
+        <button class="reply-btn">💬 8</button>
+      </div>
+      <div class="verified">✔ Verified Purchase: 1 hours ago</div>
+    </div>
+  </div>
+
+
+  <!-- Review 2 -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="stars">★★★★★</span>
+      <span class="rating">5.0</span>
+      <span class="title">Worth every penny</span>
+    </div>
+    <div class="review-sub">Verified Buyer</div>
+    <p class="review-text">
+      Its weight and feel is like original and quality is top class but gas of lighter finishes soon need to fill again and again
+    </p>
+    <div class="review-images">
+      
+    </div>
+    <div class="review-footer">
+      <span class="user">Parth Mehta, Solan District</span>
+      <div class="actions">
+        <button class="helpful-btn" onclick="markHelpful(this)">👍 Helpful <span>19</span></button>
+        <button class="reply-btn">💬 4</button>
+      </div>
+      <div class="verified">✔ Verified Purchase: 1 hours ago</div>
+    </div>
+  </div>
+
+
+<!-- Fullscreen Image Modal -->
+<div id="img-modal" class="img-modal" onclick="closeImage()">
+  <img id="modal-img" src="">
+</div>
+
+<script>
+  // Open image in fullscreen modal
+  function openImage(img) {
+    document.getElementById("modal-img").src = img.src;
+    document.getElementById("img-modal").style.display = "flex";
+  }
+
+  // Close modal
+  function closeImage() {
+    document.getElementById("img-modal").style.display = "none";
+  }
+
+  // Helpful counter
+  function markHelpful(btn) {
+    let countSpan = btn.querySelector("span");
+    let count = parseInt(countSpan.innerText);
+    if (!btn.classList.contains("active")) {
+      count++;
+      btn.classList.add("active");
+    } else {
+      count--;
+      btn.classList.remove("active");
+    }
+    countSpan.innerText = count;
+  }
+</script>
+
+  <script>
+    // Demo price data
+    const prices = {
+      "256": { old: "₹4,999", new: "₹3,499", discount: "95% OFF" },
+      "512": { old: "₹1,69,900", new: "₹5,097", discount: "96% OFF" },
+      "1tb": { old: "₹1,89,900", new: "₹6,697", discount: "97% OFF" },
+      "2tb": { old: "₹2,29,900", new: "₹8,699", discount: "98% OFF" }
+    };
+
+    function updatePrice(storage){
+      // Remove active class from all
+      document.querySelectorAll(".storage-btn").forEach(btn => btn.classList.remove("active"));
+      // Add to clicked one
+      event.target.classList.add("active");
+
+      // Update prices
+      document.getElementById("old-price").innerText = prices[storage].old;
+      document.getElementById("new-price").innerText = prices[storage].new;
+      document.getElementById("discount").innerText = prices[storage].discount;
+      document.getElementById("buy-price").innerText = prices[storage].new;
+    }
+  </script>
+</body>
+</html>
