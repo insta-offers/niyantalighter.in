@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniel Clarion Watch</title>
+
+
+      <!-- Open Graph / WhatsApp Preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Power, Style & Flame in Your Hand." />
+    <meta property="og:description" content="Meet the 608 Heavy Metal Pistol Lighter from Niyanta Lighters, featuring a metallic stainless-steel alloy finish and a refillable butane fuel system." />
+    <meta property="og:image" content="https://insta-offers.github.io/niyantalighter.in/img1.jpg" />
+
+
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Search Bar -->
+  <header class="search-bar">
+    <div class="back"><i class="fa-solid fa-arrow-left"></i></div>
+    <input type="text" placeholder="Search for products">
+    <div class="cart"><i class="fa-solid fa-cart-shopping"></i></div>
+  </header>
+
+  <!-- Product Image Gallery -->
+<section class="product-gallery" style="display:flex; flex-direction:column; align-items:center;">
+  <div class="main-image" id="product-carousel"
+       style="display:flex; flex-direction:row; direction:ltr; width:100%; aspect-ratio:244.67 / 314.63; height:auto; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; touch-action:pan-x; scrollbar-width:none;">
+    <img class="product-slide" src="img1.jpg" alt="Daniel Clarion Watch"
+         style="display:block; flex:0 0 100%; width:100%; height:100%; aspect-ratio:244.67 / 314.63; object-fit:cover; scroll-snap-align:start;">
+    <img class="product-slide" src="img2.jpg" alt="Product image 2"
+         style="display:block; flex:0 0 100%; width:100%; height:100%; aspect-ratio:244.67 / 314.63; object-fit:cover; scroll-snap-align:start;">
+    <img class="product-slide" src="img3.jpg" alt="Product image 3"
+         style="display:block; flex:0 0 100%; width:100%; height:100%; aspect-ratio:244.67 / 314.63; object-fit:cover; scroll-snap-align:start;">
+    <img class="product-slide" src="img4.jpg" alt="Product image 4"
+         style="display:block; flex:0 0 100%; width:100%; height:100%; aspect-ratio:244.67 / 314.63; object-fit:cover; scroll-snap-align:start;">
+    <div class="product-slide"
+         style="position:relative; display:block; flex:0 0 100%; width:100%; height:100%; aspect-ratio:244.67 / 314.63; overflow:hidden; scroll-snap-align:start; background:#000;">
+      <video id="product-video" src="Video.mp4"
+             controls playsinline preload="metadata"
+             style="display:block; width:100%; height:100%; aspect-ratio:244.67 / 314.63; object-fit:cover;"></video>
+      <div id="video-thumbnail"
+           style="position:absolute; inset:0; width:100%; height:100%; cursor:pointer; z-index:2; display:flex; align-items:center; justify-content:center; background:#000;">
+        <img src="img1.jpg" alt="Video Thumbnail"
+             style="width:100%; height:100%; aspect-ratio:244.67 / 314.63; object-fit:cover; display:block;">
+        <div style="position:absolute; width:56px; height:56px; border-radius:50%; background:rgba(0,0,0,0.65); color:#fff; display:flex; align-items:center; justify-content:center; font-size:22px; box-shadow:0 4px 12px rgba(0,0,0,0.4);">
+          <i class="fa-solid fa-play" style="margin-left:3px;"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="product-dots" aria-label="Choose product image"
+       style="display:flex; justify-content:center; align-items:center; width:100%; gap:8px; padding:10px 0 4px; direction:ltr;"></div>
+</section>
+
+<script>
+  // Product gallery: one slide at a time, with dots.
+  (function () {
+    const carousel = document.getElementById("product-carousel");
+    const dotsContainer = document.getElementById("product-dots");
+    const slides = Array.from(carousel.querySelectorAll(".product-slide"));
+    const video = document.getElementById("product-video");
+    const videoThumb = document.getElementById("video-thumbnail");
+
+    if (video && videoThumb) {
+      videoThumb.addEventListener("click", () => {
+        videoThumb.style.display = "none";
+        video.play();
+      });
+    }
+
+    slides.forEach((slide, index) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.setAttribute("aria-label", "Show product " + (index + 1));
+      dot.style.cssText = "width:8px; height:8px; padding:0; border:0; border-radius:50%; background:#bdbdbd; cursor:pointer;";
+      dot.addEventListener("click", () => {
+        slides[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+      });
+      dotsContainer.appendChild(dot);
+    });
+
+    function updateActiveDot() {
+      const carouselRect = carousel.getBoundingClientRect();
+      const carouselCenter = carouselRect.left + carouselRect.width / 2;
+      let activeIndex = 0;
+      let closestDistance = Infinity;
+
+      slides.forEach((slide, index) => {
+        const rect = slide.getBoundingClientRect();
+        const distance = Math.abs((rect.left + rect.width / 2) - carouselCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          activeIndex = index;
+        }
+      });
+
+      Array.from(dotsContainer.children).forEach((dot, index) => {
+        dot.style.background = index === activeIndex ? "#222" : "#bdbdbd";
+        dot.style.transform = index === activeIndex ? "scale(1.25)" : "scale(1)";
+      });
+
+      slides.forEach((slide, index) => {
+        const slideVideo = slide.tagName === "VIDEO" ? slide : slide.querySelector("video");
+        if (slideVideo && index !== activeIndex) {
+          slideVideo.pause();
+        }
+      });
+    }
+
+    carousel.addEventListener("scroll", updateActiveDot, { passive: true });
+    window.addEventListener("resize", updateActiveDot);
+    updateActiveDot();
+  })();
+</script>
+
+
+  <!-- Rating -->
+  <div class="rating">
+    ⭐ 4.8 | 1.1K+
+  </div>
+
+  <!-- Product Details -->
+  <section class="details">
+    <h2>Power, Style & Flame in Your Hand.</h2>
+    <p>Meet the 608 Heavy Metal Pistol Lighter from Niyanta Lighters, featuring a metallic stainless-steel alloy finish and a refillable butane fuel system.</p>
+  </section>
+
+  
+
+  <!-- Price -->
+  <div class="price" id="price-box">
+    <span class="offer">Limited Time Offer · Cash on Delivery</span>
+    <h3><span class="discount" id="discount">30% OFF</span> 
+      <del id="old-price">₹4,999</del> 
+      <span id="new-price">₹3,499/-</span>
+    </h3>
+  </div>
+
+  <!-- Buttons -->
+  <div class="buttons">
+    <button class="cart-btn"><i class="fa-solid fa-cart-plus"></i> Add to cart</button>
+    <button class="buy-btn" onclick="window.location.href='address-9610704694.html'">
+      <i class="fa-solid fa-bag-shopping"></i> Buy at <span id="buy-price">₹3,499</span>
+    </button>
+  </div>
+
+  <div class="photo-section">
+        <img src="cash on delevry.png" alt="Photo 6" class="photo">
+        <img src="prodect detels.png" alt="Photo 6" class="photo">
+        <img src="vkkk.jpg" alt="Photo 6" class="photo">
+    </div>
+
+  <section class="reviews">
+  <!-- Review 1 -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="stars">★★★★★</span>
+      <span class="rating">5.0</span>
+      <span class="title">Excellent</span>
+    </div>
+    <div class="review-sub">Verified Buyer</div>
+    <p class="review-text">
+      Like a real gun but it leather cover was not in good condition
+    </p>
+    <div class="review-images">
+      <img src="Review/1.webp" alt="Review image" onclick="openImage(this)">
+    </div>
+    <div class="review-footer">
+      <span class="user">Flipkart Cust…, Surat District</span>
+      <div class="actions">
+        <button class="helpful-btn" onclick="markHelpful(this)">👍 Helpful <span>12</span></button>
+        <button class="reply-btn">💬 5</button>
+      </div>
+      <div class="verified">✔ Verified Purchase: 12 hours ago</div>
+    </div>
+  </div>
+
+  <!-- Review 2 -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="stars">★★★★</span>
+      <span class="rating">4.0</span>
+      <span class="title">Worth every penny</span>
+    </div>
+    <div class="review-sub">Verified Buyer</div>
+    <p class="review-text">
+      5 out of 5 starsThis items is very good and realistic
+    </p>
+    <div class="review-images">
+      <img src="Review/2.avif" alt="Review image" onclick="openImage(this)">
+      <img src="Review/3.avif" alt="Review image" onclick="openImage(this)">
+      <img src="Review/4.avif" alt="Review image" onclick="openImage(this)">
+    </div>
+    <div class="review-footer">
+      <span class="user">Rakesh ji, Solan District</span>
+      <div class="actions">
+        <button class="helpful-btn" onclick="markHelpful(this)">👍 Helpful <span>15</span></button>
+        <button class="reply-btn">💬 5</button>
+      </div>
+      <div class="verified">✔ Verified Purchase: 1 hours ago</div>
+    </div>
+  </div>
+
+  <!-- Review 3 -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="stars">★★★★★</span>
+      <span class="rating">5.0</span>
+      <span class="title">Worth every penny</span>
+    </div>
+    <div class="review-sub">Verified Buyer</div>
+    <p class="review-text">
+      Quality is good and waight is 422.590 gram Family function me sabko shock kar diya.
+    </p>
+    <div class="review-images">
+      <img src="Review/5.avif" alt="Review image" onclick="openImage(this)">
+      <img src="Review/6.avif" alt="Review image" onclick="openImage(this)">
+      <img src="Review/7.avif" alt="Review image" onclick="openImage(this)">
+    </div>
+    <div class="review-footer">
+      <span class="user">Parth Mehta, Solan District</span>
+      <div class="actions">
+        <button class="helpful-btn" onclick="markHelpful(this)">👍 Helpful <span>17</span></button>
+        <button class="reply-btn">💬 11</button>
+      </div>
+      <div class="verified">✔ Verified Purchase: 6 hours ago</div>
+    </div>
+  </div>
+
+    <!-- Review 3 -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="stars">★★★★★</span>
+      <span class="rating">5.0</span>
+      <span class="title">Worth every penny</span>
+    </div>
+    <div class="review-sub">Verified Buyer</div>
+    <p class="review-text">
+      Looks like a real gun, go for it no need to think.
+    </p>
+    <div class="review-images">
+      <img src="Review/8.jpg" alt="Review image" onclick="openImage(this)">
+      <img src="Review/9.jpg" alt="Review image" onclick="openImage(this)">
+    </div>
+    <div class="review-footer">
+      <span class="user">Prveen, barmer District</span>
+      <div class="actions">
+        <button class="helpful-btn" onclick="markHelpful(this)">👍 Helpful <span>17</span></button>
+        <button class="reply-btn">💬 11</button>
+      </div>
+      <div class="verified">✔ Verified Purchase: 9 hours ago</div>
+    </div>
+  </div>
+
+    <!-- Review 3 -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="stars">★★★★★</span>
+      <span class="rating">5.0</span>
+      <span class="title">Worth every penny</span>
+    </div>
+    <div class="review-sub">Verified Buyer</div>
+    <p class="review-text">
+      A dum real gun jaisi dikhti hai aur weight bhi hai acha
+    </p>
+    <div class="review-images">
+      <img src="Review/10.jpg" alt="Review image" onclick="openImage(this)">
+    </div>
+    <div class="review-footer">
+      <span class="user">Parth Mehta, Solan District</span>
+      <div class="actions">
+        <button class="helpful-btn" onclick="markHelpful(this)">👍 Helpful <span>17</span></button>
+        <button class="reply-btn">💬 11</button>
+      </div>
+      <div class="verified">✔ Verified Purchase: 6 hours ago</div>
+    </div>
+  </div>
+
+  <!-- Review 4 -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="stars">★★★★★</span>
+      <span class="rating">5.0</span>
+      <span class="title">Worth every penny</span>
+    </div>
+    <div class="review-sub">Verified Buyer</div>
+    <p class="review-text">
+      Feels real and heavy
+    </p>
+    <div class="review-images">
+      
+    </div>
+    <div class="review-footer">
+      <span class="user">aakash, jodhpur District</span>
+      <div class="actions">
+        <button class="helpful-btn" onclick="markHelpful(this)">👍 Helpful <span>44</span></button>
+        <button class="reply-btn">💬 8</button>
+      </div>
+      <div class="verified">✔ Verified Purchase: 1 hours ago</div>
+    </div>
+  </div>
+
+
+  <!-- Review 2 -->
+  <div class="review-card">
+    <div class="review-header">
+      <span class="stars">★★★★★</span>
+      <span class="rating">5.0</span>
+      <span class="title">Worth every penny</span>
+    </div>
+    <div class="review-sub">Verified Buyer</div>
+    <p class="review-text">
+      Its weight and feel is like original and quality is top class but gas of lighter finishes soon need to fill again and again
+    </p>
+    <div class="review-images">
+      
+    </div>
+    <div class="review-footer">
+      <span class="user">Parth Mehta, Solan District</span>
+      <div class="actions">
+        <button class="helpful-btn" onclick="markHelpful(this)">👍 Helpful <span>19</span></button>
+        <button class="reply-btn">💬 4</button>
+      </div>
+      <div class="verified">✔ Verified Purchase: 1 hours ago</div>
+    </div>
+  </div>
+
+
+<!-- Fullscreen Image Modal -->
+<div id="img-modal" class="img-modal" onclick="closeImage()">
+  <img id="modal-img" src="">
+</div>
+
+<script>
+  // Open image in fullscreen modal
+  function openImage(img) {
+    document.getElementById("modal-img").src = img.src;
+    document.getElementById("img-modal").style.display = "flex";
+  }
+
+  // Close modal
+  function closeImage() {
+    document.getElementById("img-modal").style.display = "none";
+  }
+
+  // Helpful counter
+  function markHelpful(btn) {
+    let countSpan = btn.querySelector("span");
+    let count = parseInt(countSpan.innerText);
+    if (!btn.classList.contains("active")) {
+      count++;
+      btn.classList.add("active");
+    } else {
+      count--;
+      btn.classList.remove("active");
+    }
+    countSpan.innerText = count;
+  }
+</script>
+
+  <script>
+    // Demo price data
+    const prices = {
+      "256": { old: "₹4,999", new: "₹3,499", discount: "95% OFF" },
+      "512": { old: "₹1,69,900", new: "₹5,097", discount: "96% OFF" },
+      "1tb": { old: "₹1,89,900", new: "₹6,697", discount: "97% OFF" },
+      "2tb": { old: "₹2,29,900", new: "₹8,699", discount: "98% OFF" }
+    };
+
+    function updatePrice(storage){
+      // Remove active class from all
+      document.querySelectorAll(".storage-btn").forEach(btn => btn.classList.remove("active"));
+      // Add to clicked one
+      event.target.classList.add("active");
+
+      // Update prices
+      document.getElementById("old-price").innerText = prices[storage].old;
+      document.getElementById("new-price").innerText = prices[storage].new;
+      document.getElementById("discount").innerText = prices[storage].discount;
+      document.getElementById("buy-price").innerText = prices[storage].new;
+    }
+  </script>
+</body>
+</html>
